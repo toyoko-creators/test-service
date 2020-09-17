@@ -14,15 +14,35 @@ echo "Hello World!rrrrr"
 ?>
 <!DOCTYPE HTML>
 <html lang="ja">
+
 <head>
-<title>てすと</title>
+	<meta charset="UTF-8">
+	<meta name="viewpoint" content="width=device-width">
+	<title>Login</title>
+	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-	<form id="Rogin" action="">
-		<p><label>ログインID(メールアドレス)<input type="text" name="ID" size="40"></label></p>
-		<p><label>ログインパスワード(英数字8-20文字)<input type="password" name="PASSWORD" size="40"  maxlength="20"></label></p>
-		 <label>IDを保存する<input type="checkbox"></label><br>
-		<input type="submit"value="ログイン"> <input type="button"value="ID,パスワードを忘れた場合はこちら">
-	</form>
+<div class="form-wrapper">
+  <h1>LOGIN</h1>
+  <form>
+    <div class="form-item">
+      <label for="email"></label>
+      <input type="email" name="email" required="required" placeholder="Email Address"></input>
+    </div>
+    <div class="form-item">
+      <label for="password"></label>
+      <input type="password" name="password" required="required" placeholder="Password"></input>
+    </div>
+    <div class="button-panel">
+      <input type="submit" class="button" value="LOGIN"></input>
+    </div>
+  </form>
+  <div class="form-footer">
+    <p><a href="#">Create an account</a></p>
+    <p><a href="#">Forgot password?</a></p>
+  </div>
+</div>
 </body>
+
 </html>
