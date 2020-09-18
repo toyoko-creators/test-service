@@ -1,48 +1,47 @@
 <?php
-/*
- * Copyright (c) 2012-2019 Red Hat, Inc.
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
- * which is available at https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
- *
- * Contributors:
- *   Red Hat, Inc. - initial API and implementation
- */
-echo "Hello World!rrrrr"
+    session_start();
+
+    //ログイン済みかを確認
+    if (isset($_SESSION['USER'])) {
+        header('Location: top.php');
+        exit;
+    }
+
+    //ログイン機能
+    $message = '';
+    if(isset($_POST['login'])){
+        if ($_POST['email'] == '1045@gmail.com' && $_POST['password'] == '1045'){
+
+            $_SESSION['USER'] = '東横太郎';
+            header('Location: top.php');
+            exit;
+        }
+        else{
+ 
+            $message = 'メールアドレスかパスワードが間違っています。';
+        }
+    }
+ 
 ?>
-<!DOCTYPE HTML>
-<html lang="ja">
-
+ 
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewpoint" content="width=device-width">
-	<title>Login</title>
-	<link rel="stylesheet" href="css/style.css">
+    <title>ログイン機能</title>
 </head>
-
+ 
 <body>
-<div class="form-wrapper">
-  <h1>LOGIN</h1>
-  <form>
-    <div class="form-item">
-      <label for="email"></label>
-      <input type="email" name="email" required="required" placeholder="Email Address"></input>
-    </div>
-    <div class="form-item">
-      <label for="password"></label>
-      <input type="password" name="password" required="required" placeholder="Password"></input>
-    </div>
-    <div class="button-panel">
-      <input type="submit" class="button" value="LOGIN"></input>
-    </div>
-  </form>
-  <div class="form-footer">
-    <p><a href="#">Create an account</a></p>
-    <p><a href="#">Forgot password?</a></p>
-  </div>
-</div>
+<h1>ログイン機能</h1>
+<p style="color: red"><?php echo $message ?></p>
+<form method="post" action="index.php">
+    <label for="email">メールアドレス</label>
+    <input id="email" type="email" name="email">
+    <br>
+    <label for="password">パスワード</label>
+    <input id="password" type="password" name="password">
+    <br>
+    <input type="submit" name="login" value="ログイン">
+</form>
+ 
 </body>
-
 </html>
