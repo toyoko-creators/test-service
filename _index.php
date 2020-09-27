@@ -38,8 +38,8 @@
     </div>
   </form>
   <div class="form-footer">
-    <p><a href="#">Create an account</a></p>
-    <p><a href="#">Forgot password?</a></p>
+    <p><a href="#">ユーザーアカウント作成</a></p>
+    <p><a href="#">パスワードを忘れた場合</a></p>
   </div>
 </div>
 </body>
