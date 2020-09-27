@@ -8,6 +8,26 @@
         exit;
     }
 
+    //クローゼット
+    if(isset($_POST['closet'])){
+    
+        $_SESSION = [];
+        session_destroy();
+
+        header('Location: index.php');
+        exit;
+    }
+    
+    //コーディネート保存
+    if(isset($_POST['outfit'])){
+    
+        $_SESSION = [];
+        session_destroy();
+
+        header('Location: index.php');
+        exit;
+    }
+
     //ログアウト機能
     if(isset($_POST['logout'])){
     
@@ -25,22 +45,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewpoint" content="width=device-width">
-    <title>トップ画面</title>
+    <title>コーディネート画面</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
  
 <body>
-<div class="form-wrapper">
-    <h1>トップ画面</h1>
+
     
     <form method="post" action="top.php">
-        <p align="center"><?php echo $_SESSION['USER'] ?>さんでログイン中</p>
-    
-        <div class="button-panel">
+        <p><?php echo $_SESSION['USER'] ?> さんでログイン中</p>
+        
+        <div class="button-normal">
+            <input type="submit" class="button" name="closet" value="クローゼット">
+        </div>
+        <div class="button-normal">
+            <input type="submit" class="button" name="outfit" value="コーディネート保存">
+        </div>
+        <div class="button-normal">
             <input type="submit" class="button" name="logout" value="ログアウト">
         </div>
     </form>
-    <div class="form-footer"></div>
-</div>
+    
+
 </body>
 </html>
