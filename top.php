@@ -64,6 +64,12 @@
         <div class="button-normal">
             <input type="submit" class="button" name="logout" value="ログアウト">
         </div>
+        <div class="button-normal">
+            <input type="submit" class="button" name="tops" value="トップス選択">
+        </div>
+        <div class="button-normal">
+            <input type="submit" class="button" name="bottoms" value="ボトムス選択">
+        </div>
     </form>
     
 
