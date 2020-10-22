@@ -57,21 +57,21 @@ include "templates/header.php";
     <form method="post" action="top.php">
         <p><?php echo $_SESSION['USER'] ?> さんでログイン中</p>
         
-        <div class="button-normal">
-            <input type="submit" class="button" name="closet" value="クローゼット">
-        </div>
-        <div class="button-normal">
-            <input type="submit" class="button" name="outfit" value="コーディネート保存">
-        </div>
-        <div class="button-normal">
-            <input type="submit" class="button" name="logout" value="ログアウト">
-        </div>
-        <div class="button-normal">
-            <input type="submit" class="button" name="tops" value="トップス選択">
-        </div>
-        <div class="button-normal">
-            <input type="submit" class="button" name="bottoms" value="ボトムス選択">
-        </div>
+        <div id="container">
+            <div id="itemA">
+				<p><?php echo $_SESSION['USER'] ?> さんでログイン中</p>
+                <a href="#">クローゼット</a><br>
+                <a href="#">コーディネート保存</a><br>
+                <a href="#">ログアウト</a><br>
+				<a href="image_upload.php"><strong>Image_upload</strong></a>画像のアップロード<br>
+            </div>
+            <div id="itemB">
+                <input type="submit" class="button" name="tops" value="トップス選択"><br>
+            </div>
+            <div id="itemC">
+                <input type="submit" class="button" name="bottoms" value="ボトムス選択"><br>
+            </div>
+	    </div>
     </form>
-    <a href="image_upload.php"><strong>Image_upload</strong></a>画像のアップロード
+    
 <?php include "templates/footer.php"; ?>
