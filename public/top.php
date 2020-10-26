@@ -55,21 +55,19 @@ include "templates/header.php";
 ?>
 
     <form method="post" action="top.php">
-        <p><?php echo $_SESSION['USER'] ?> さんでログイン中</p>
-        
         <div id="container">
-            <div id="itemA">
+            <div id="Menu_frame">
 				<p><?php echo $_SESSION['USER'] ?> さんでログイン中</p>
                 <a href="#">クローゼット</a><br>
                 <a href="#">コーディネート保存</a><br>
                 <a href="#">ログアウト</a><br>
-				<a href="image_upload.php"><strong>Image_upload</strong></a>画像のアップロード<br>
+				<!-- <a href="image_upload.php"><strong>Image_upload</strong></a>画像のアップロード<br> -->
             </div>
-            <div id="itemB">
-                <input type="submit" class="button" name="tops" value="トップス選択"><br>
+            <div id="Main_frame_tops">
+                <button type="button" onclick="location.href='image_upload.php'">トップス選択</button>
             </div>
-            <div id="itemC">
-                <input type="submit" class="button" name="bottoms" value="ボトムス選択"><br>
+            <div id="Main_frame_bottoms">
+                <button type="button" onclick="location.href='image_upload.php'">ボトムス選択</button>
             </div>
 	    </div>
     </form>
