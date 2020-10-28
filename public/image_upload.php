@@ -3,6 +3,12 @@
 
     require "../config.php";
 
+    //ログイン済みかを確認
+    if (!isset($_SESSION['USER'])) {
+        header('Location: index.php');
+        exit;
+    }
+
     $connection = new PDO($dsn, $username, $password, $options);
     $sql_select = "SELECT * FROM Clothes";
     $statement = $connection->prepare($sql_select);
@@ -14,7 +20,7 @@
             try  {
                 $imageid = uniqid(mt_rand(), true);
                 $email = $_SESSION['Email'];
-                $wearType = $_GET['WearType'];
+                $wearType = $_SESSION['WearType'];
                 $filepath = "./images/$imageid.png";
                 $sql = "INSERT INTO Clothes(ImageFile,email,WearType) VALUES (:ImageFile,:email,'$wearType')";
                 $stmt = $connection->prepare($sql);
@@ -31,13 +37,13 @@
     }
 ?>
 <?php
-$pagetitle = 'イメージ追加：'.$_GET['WearType'];
+$pagetitle = 'イメージ追加：'.$_SESSION['WearType'];
 include "templates/header.php";
 ?>
-<h1>画像アップロード</h1>
+<h1>画像アップロード：<?php echo $_SESSION['WearType']?></h1>
 <?php if (isset($_POST['upload'])): ?>
     <p><?php echo $message; ?></p>
-    <p><a href="image_view.php?WearType=<?php echo $_GET['WearType']?>">画像表示へ</a></p>
+    <p><a href="image_view.php?WearType=<?php echo $_SESSION['WearType']?>">画像表示へ</a></p>
 <?php else: ?>
     <form method="post" enctype="multipart/form-data">
         <p>アップロード画像</p>
@@ -48,7 +54,7 @@ include "templates/header.php";
             <table>
       <thead>
         <tr>
-         <!-- <th>id</th>-->s
+         <!-- <th>id</th>-->
           <th>ImageFile</th>
           <th>email</th>
           <th>WearType</th>

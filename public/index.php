@@ -1,6 +1,7 @@
 <?php
     require "../config.php";
     //require "../common.php";
+
     session_start();
     //ログイン済みかを確認
     if (isset($_SESSION['USER'])) {
