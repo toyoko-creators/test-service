@@ -22,7 +22,6 @@
     if(isset($_POST['outfit'])){
     
 
-        $test="test";
         exit;
     }
 
@@ -51,9 +50,6 @@
 <?php
 $pagetitle = 'トップ画面';
 include "templates/header.php";
-?>
-<?php
- echo $test;
 ?>
 
     <form method="post" name="TopForm" action="top.php">
