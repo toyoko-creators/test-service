@@ -2,6 +2,24 @@
     require "../config.php";
     session_start();
 
+    try  {
+        $connection = new PDO($dsn, $username, $password, $options);
+        $sqltops = "SELECT ImageFile FROM Clothes WHERE email = :email AND WearType = 'Top'" ;
+        $stmt = $connection->prepare($sqltops);
+        $email = $_SESSION['Email'];
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $tops = $stmt->fetchAll();
+        $sqlbottoms = "SELECT ImageFile FROM Clothes WHERE email = :email AND WearType = 'Bottom'" ;
+        $stmt = $connection->prepare($sqlbottoms);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $bottoms = $stmt->fetchAll();
+    }
+    catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
     function WearButtonClick($arg_1){
         $_SESSION['WearType'] =$arg_1;
         header("Location: image_upload.php");
@@ -46,7 +64,6 @@
 $pagetitle = 'トップ画面';
 include "templates/header.php";
 ?>
-
     <form method="post" action="top.php">
         <div id="container">
             <div id="Menu_frame">
@@ -59,11 +76,21 @@ include "templates/header.php";
                 <div class="button-normal">
                     <input type="submit" class="button" name="TopsButton" value="トップス選択">
                 </div>
+            <p width="500" class="imagelist">
+                <?php foreach ((array)$tops as $row) : ?>
+                    <img src="images/<?php echo $row["ImageFile"]; ?>.png">
+                <?php endforeach; ?>
+            </p>
             </div>
             <div id="Main_frame_bottoms">
                 <div class="button-normal">
                     <input type="submit" class="button" name="BottomsButton"  value="ボトムス選択">
                 </div>
+            <p width="500" class="imagelist">
+                <?php foreach ((array)$bottoms as $row) : ?>
+                    <img src="images/<?php echo $row["ImageFile"]; ?>.png">
+                <?php endforeach; ?>
+            </p>
             </div>
         </div>
     </form>

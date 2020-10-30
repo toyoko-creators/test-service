@@ -113,6 +113,10 @@ form {
   border-bottom: 1px dotted #8c8c8c;
 }
 
+p.imagelist img {
+  width: 20%;
+}
+
 /* コンテナ */
 #container {
   display: grid;
