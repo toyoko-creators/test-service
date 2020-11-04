@@ -1,6 +1,11 @@
 <?php
     require "../config.php";
     session_start();
+    //ログイン済みかを確認
+    if (!isset($_SESSION['USER'])) {
+        header('Location: index.php');
+        exit;
+    }
 
     try  {
         $connection = new PDO($dsn, $username, $password, $options);
@@ -27,18 +32,50 @@
     }
     //初期化(デフォルトではすべて表示する)
     $_SESSION['WearType'] ='All';
+    $message="";
 
-    //ログイン済みかを確認
-    if (!isset($_SESSION['USER'])) {
-        header('Location: index.php');
-        exit;
-    }
     
     //コーディネート保存
     if(isset($_POST['outfit'])){
+        try  {
+            $connectionFav = new PDO($dsn, $username, $password, $options);
+            $email = $_SESSION['Email'];
+            $TopFile = "12750326105f88e2b1d27894.99618425";
+            $BottomFile = "14294579835f8902f30e1a91.36829885";
+            $sqlFav = "SELECT TopFile FROM FavoList WHERE TopFile = :TopFile AND BottomFile = :BottomFile" ;
+
+            $stmtFav = $connection->prepare($sqlFav);
+            $stmtFav->bindValue(':TopFile', $TopFile, PDO::PARAM_STR);
+            $stmtFav->bindValue(':BottomFile', $BottomFile, PDO::PARAM_STR);
+            $stmtFav->execute();
+            $CheckUniq = $stmtFav->fetchAll();
+
+            if (empty($CheckUniq))
+            {
+                $sqlFav = "INSERT INTO FavoList(email,TopFile,BottomFile) VALUES (:email,:TopFile,:BottomFile)";
+                $stmtFav = $connectionFav->prepare($sqlFav);
+                $stmtFav->bindValue(':email', $email, PDO::PARAM_STR);
+                $stmtFav->bindValue(':TopFile', $TopFile, PDO::PARAM_STR);
+                $stmtFav->bindValue(':BottomFile', $BottomFile, PDO::PARAM_STR);
+                $stmtFav->execute();
+                $message = '登録しました';
+            }
+            else{
+                //すでにその組み合わせがある場合は作らない
+                $message = 'その組み合わせはすでに登録済みです';                
+            }
+        }
+        catch (PDOException $e) {
+            echo $e->getMessage();
+        }
         //exit;
     }
 
+    //クローゼット
+    if(isset($_POST['closet'])){
+        header('Location: closet.php');
+        exit;
+    }
     //ログアウト機能
     if(isset($_POST['logout'])){
         $_SESSION = [];
@@ -64,18 +101,30 @@
 $pagetitle = 'トップ画面';
 include "templates/header.php";
 ?>
-    <form method="post" action="top.php">
         <div id="container">
             <div id="Menu_frame">
 				<p><?php echo $_SESSION['USER'] ?> さんでログイン中</p>
-                <a href="image_view.php">クローゼット</a><br>
-                <a href="#">コーディネート保存</a><br>
-                <a href="#">ログアウト</a><br>
+                <form method="post" action="top.php">
+                    <p class="button-normal">
+                        <input type="submit" class="button" name="outfit" value="コーディネート保存">
+                    </p>
+                    <p class="button-normal">
+                        <input type="submit" class="button" name="logout" value="ログアウト">
+                    </p>
+                </form>
             </div>
             <div id="Main_frame_tops">
                 <div class="button-normal">
-                    <input type="submit" class="button" name="TopsButton" value="トップス選択">
+                    <form method="post" action="closet.php">
+                        <input type="submit" class="button" name="closet'" value="クローゼット">
+                    </form>
                 </div>
+                <?php echo $message; ?>
+                <form method="post" action="top.php">
+                    <div class="button-normal">
+                        <input type="submit" class="button" name="TopsButton" value="トップス選択">
+                    </div>
+                </form>
             <p width="500" class="imagelist">
                 <?php foreach ((array)$tops as $row) : ?>
                     <img src="images/<?php echo $row["ImageFile"]; ?>.png">
@@ -84,7 +133,9 @@ include "templates/header.php";
             </div>
             <div id="Main_frame_bottoms">
                 <div class="button-normal">
-                    <input type="submit" class="button" name="BottomsButton"  value="ボトムス選択">
+                    <form method="post" action="top.php">
+                        <input type="submit" class="button" name="BottomsButton"  value="ボトムス選択">
+                    </form>
                 </div>
             <p width="500" class="imagelist">
                 <?php foreach ((array)$bottoms as $row) : ?>
@@ -96,6 +147,7 @@ include "templates/header.php";
     </form>
     <p>
         <a href="image_view.php">一覧表示</a>
+    </p>
 <!--
     <form method="post" action="top.php">
         <p><?php echo $_SESSION['USER'] ?> さんでログイン中</p>

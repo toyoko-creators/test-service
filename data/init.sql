@@ -31,10 +31,9 @@ INSERT INTO Clothes VALUES('6781987215f890380683ea2.50164434','1046@gmail.com','
 
 DROP TABLE IF EXISTS FavoList;
 create table FavoList (
-    id int auto_increment,
     email NVARCHAR(100) NOT NULL,
     TopFile VARCHAR(256) NOT NULL,
-    UnderFile VARCHAR(256) NOT NULL
+    BottomFile VARCHAR(256) NOT NULL
 );
 
 INSERT INTO FavoList VALUES('1045@gmail.com','11219840665f88e35ce2d153.90786069','14294579835f8902f30e1a91.36829885');
