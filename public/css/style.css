@@ -120,8 +120,8 @@ p.imagelist img {
 /* コンテナ */
 #container {
   display: grid;
-  grid-template-rows: 200px 300px;
-  grid-template-columns: 200px 1fr;
+  grid-template-rows: 300px 300px;
+  grid-template-columns: 200px 1000px;
 }
 
 /* アイテム */

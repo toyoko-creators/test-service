@@ -1,0 +1,61 @@
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewpoint" content="width=device-width">
+	<!-- <title><?php  echo $pagetitle; ?></title> -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+</head>
+<body>
+    <!-- <form method="post" action="top.php"> -->
+        <div id="container">
+            <div id="Menu_frame">
+				<!-- <p><?php echo $_SESSION['USER'] ?> さんでログイン中</p> -->
+                <a href="image_view.php">クローゼット</a><br>
+                <a href="#">コーディネート保存</a><br>
+                <a href="#">ログアウト</a><br>
+                <div class="button-normal">
+                    <input type="submit" class="button" name="TopsButton" value="トップス選択">
+                    <input type="submit" class="button" name="BottomsButton"  value="ボトムス選択">
+                </div>
+            </div>
+            <div id="Main_frame_tops">
+                <!-- <div class="button-normal">
+                    <input type="submit" class="button" name="TopsButton" value="トップス選択">
+                </div> -->
+                <div class="slick01">
+                    <img alt="pic01" src="Images_Default/photo1.jpg"/>
+                    <img alt="pic02" src="Images_Default/photo2.jpg"/>
+                    <img alt="pic03" src="Images_Default/photo3.jpg"/>
+                    <img alt="pic04" src="Images_Default/photo4.jpg"/>
+                    <img alt="pic05" src="Images_Default/photo5.jpg"/>
+                </div>
+            </div>
+            
+            <div id="Main_frame_bottoms">
+                <!-- <div class="button-normal">
+                    <input type="submit" class="button" name="BottomsButton"  value="ボトムス選択">
+                </div> -->
+                <div class="slick01">
+                    <img alt="pic01" src="Images_Default/photo11.jpg"/>
+                    <img alt="pic02" src="Images_Default/photo12.jpg"/>
+                    <img alt="pic03" src="Images_Default/photo13.jpg"/>
+                    <img alt="pic04" src="Images_Default/photo14.jpg"/>
+                    <img alt="pic05" src="Images_Default/photo15.jpg"/>
+                </div>
+            </div>
+        </div>
+    <!-- </form> -->
+    <p>
+        <a href="image_view.php">一覧表示</a>
+    </p>
+
+    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="js/slick.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+
+<!-- <?php include "templates/footer.php"; ?> -->
+
+</body>
