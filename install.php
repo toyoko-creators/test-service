@@ -15,11 +15,10 @@ foreach (array_filter(glob('public/images/*'),'is_file') as $fileName) {
 }
 
 //ファイルのコピー
-//服の画像を持ってきたので削除
-//foreach (glob('public/Images_Default/*') as $fileName) {
-//    echo 'copy from: public/Images_Default/'.$fileName."\n";
-////    copy($fileName, 'public/images/'.basename($fileName));
-//}
+foreach (glob('public/Images_Default/*') as $fileName) {
+    echo 'copy from: public/Images_Default/'.$fileName."\n";
+    copy($fileName, 'public/images/'.basename($fileName));
+}
 
 //DB初期化
 try {
