@@ -125,23 +125,23 @@ include "templates/header.php";
                         <input type="submit" class="button" name="TopsButton" value="トップス選択">
                     </div>
                 </form>
-            <p width="500" class="imagelist">
-                <?php foreach ((array)$tops as $row) : ?>
-                    <img src="images/<?php echo $row["ImageFile"]; ?>.png">
-                <?php endforeach; ?>
-            </p>
+                <p width="500" class="imagelist">
+                    <?php foreach ((array)$tops as $row) : ?>
+                        <img src="images/<?php echo $row["ImageFile"]; ?>.png">
+                    <?php endforeach; ?>
+                </p>
             </div>
             <div id="Main_frame_bottoms">
+                <p width="500" class="imagelist">
+                    <?php foreach ((array)$bottoms as $row) : ?>
+                        <img src="images/<?php echo $row["ImageFile"]; ?>.png">
+                    <?php endforeach; ?>
+                </p>
                 <div class="button-normal">
                     <form method="post" action="top.php">
                         <input type="submit" class="button" name="BottomsButton"  value="ボトムス選択">
                     </form>
                 </div>
-            <p width="500" class="imagelist">
-                <?php foreach ((array)$bottoms as $row) : ?>
-                    <img src="images/<?php echo $row["ImageFile"]; ?>.png">
-                <?php endforeach; ?>
-            </p>
             </div>
         </div>
     </form>
