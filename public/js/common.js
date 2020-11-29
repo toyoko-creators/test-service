@@ -5,8 +5,9 @@ $('.slick01').slick(
     dots: true,
     variableWidth: true,
     slidesToShow: 1,
-    // prevArrow: true,
-    // nextArrow: true,
+    slidesToScroll: 1,
+    infinite: false,      // スライドをループしない
+    focusOnSelect: true,  // 中央以外をクリックすると、中央まで移動(=フォーカス)する。
     
   });
 
